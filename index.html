@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post and Market Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .post {
+            background: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .emoji-reactions {
+            display: flex;
+            gap: 10px;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-primary {
+            border-radius: 5px;
+        }
+        .header {
+            background-color: #0073b1;
+            color: white;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header d-flex justify-content-between align-items-center">
+    <div>
+        <h2 class="mb-0">MyNetwork</h2>
+    </div>
+    <div class="d-flex align-items-center">
+        <input type="text" class="form-control mr-3" placeholder="Search" style="width: 300px;">
+        <a href="#" class="text-white mr-3">Home</a>
+        <a href="#" class="text-white mr-3">Jobs</a>
+        <a href="#" class="text-white mr-3">Messaging</a>
+        <div class="notification">
+            <span class="badge badge-light">1</span>
+            <a href="#" class="text-white">Notifications</a>
+        </div>
+        <a href="#" class="text-white">Md. Boni Amin</a>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h1 class="text-center">Community Posts</h1>
+
+    <div class="btn-group mb-4" role="group">
+        <button type="button" class="btn btn-primary" id="generalPostBtn">General Posts</button>
+        <button type="button" class="btn btn-secondary" id="marketPostBtn">Market Posts</button>
+    </div>
+
+    <div id="postContainer">
+        <!-- General Posts -->
+        <div class="post general-post">
+            <h5>General Post Title 1</h5>
+            <p>This is a general post description. Feel free to comment and engage!</p>
+            <div class="post-actions">
+                <button class="btn btn-success">Like</button>
+                <button class="btn btn-info">Message</button>
+                <button class="btn btn-warning">Call</button>
+            </div>
+            <div class="emoji-reactions">
+                <span>👍</span>
+                <span>❤️</span>
+                <span>😂</span>
+            </div>
+        </div>
+
+        <div class="post general-post">
+            <h5>General Post Title 2</h5>
+            <p>This is another general post. Join the discussion!</p>
+            <div class="post-actions">
+                <button class="btn btn-success">Like</button>
+                <button class="btn btn-info">Message</button>
+                <button class="btn btn-warning">Call</button>
+            </div>
+            <div class="emoji-reactions">
+                <span>👍</span>
+                <span>❤️</span>
+                <span>😂</span>
+            </div>
+        </div>
+
+        <!-- Market Posts -->
+        <div class="post market-post d-none">
+            <h5>Market Post Title 1</h5>
+            <p>For sale: Brand new bicycle! Contact me for details.</p>
+            <div class="post-actions">
+                <button class="btn btn-success">Like</button>
+                <button class="btn btn-info">Message</button>
+                <button class="btn btn-warning">Call</button>
+            </div>
+            <div class="emoji-reactions">
+                <span>👍</span>
+                <span>❤️</span>
+                <span>😂</span>
+            </div>
+        </div>
+
+        <div class="post market-post d-none">
+            <h5>Market Post Title 2</h5>
+            <p>Looking to sell my old gaming console. Message me for price!</p>
+            <div class="post-actions">
+                <button class="btn btn-success">Like</button>
+                <button class="btn btn-info">Message</button>
+                <button class="btn btn-warning">Call</button>
+            </div>
+            <div class="emoji-reactions">
+                <span>👍</span>
+                <span>❤️</span>
+                <span>😂</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <h2>Create a Post</h2>
+        <form id="postForm">
+            <div class="form-group">
+                <label for="postTitle">Post Title:</label>
+                <input type="text" class="form-control" id="postTitle" required>
+            </div>
+            <div class="form-group">
+                <label for="postDescription">Description:</label>
+                <textarea class="form-control" id="postDescription" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Post</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('generalPostBtn').onclick = function() {
+        document.querySelectorAll('.post').forEach(post => {
+            if (post.classList.contains('general-post')) {
+                post.classList.remove('d-none');
+            } else {
+                post.classList.add('d-none');
+            }
+        });
+    };
+
+    document.getElementById('marketPostBtn').onclick = function() {
+        document.querySelectorAll('.post').forEach(post => {
+            if (post.classList.contains('market-post')) {
+                post.classList.remove('d-none');
+            } else {
+                post.classList.add('d-none');
+            }
+        });
+    };
+
+    document.getElementById('postForm').onsubmit = function(e) {
+        e.preventDefault();
+        const title = document.getElementById('postTitle').value;
+        const description = document.getElementById('postDescription').value;
+
+        // নতুন পোস্ট তৈরি করা
+        const newPost = document.createElement('div');
+        newPost.className = 'post general-post';
+        newPost.innerHTML = `
+            <h5>${title}</h5>
+            <p>${description}</p>
+            <div class="post-actions">
+                <button class="btn btn-success">Like</button>
+                <button class="btn btn-info">Message</button>
+                <button class="btn btn-warning">Call</button>
+            </div>
+            <div class="emoji-reactions">
+                <span>👍</span>
+                <span>❤️</span>
+                <span>😂</span>
+            </div>
+        `;
+        document.getElementById('postContainer').prepend(newPost);
+
+        // ফর্ম পরিষ্কার করা
+        document.getElementById('postForm').reset();
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.post {
+    background: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.post-actions {
+    margin-top: 10px;
+}
+
+.emoji-reactions {
+    margin-top: 10px;
+    font-size: 20px;
+}
